@@ -10,32 +10,37 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 743564
  */
-public class AgeCalculatorServlet extends HttpServlet {
+public class ArithmeticCalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp")
+        
+        
+         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp")
                 .forward(request, response);
     }
 
-     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String age = request.getParameter("age");
+        String first = request.getParameter("first");
+        
+         if(first == null || first.equals("")){
        
-      if(age == null || age.equals("")){
+                 request.setAttribute("message", "invalid"); 
+           
+         String second = request.getParameter("second");
+          if(second == null || second.equals("")){
        
-                 request.setAttribute("message", "You must give your current age.");  
-          
-             getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp")
+                 request.setAttribute("message", "invalid"); 
+        
+         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp")
                 .forward(request, response);
-            
-            }
-                  
-          
-       }
+      
     }
 
-
+   }
+    }
+}
 
